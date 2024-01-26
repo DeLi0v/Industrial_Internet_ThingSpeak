@@ -122,8 +122,8 @@ void loop()
 {
   // Записываем данные с датчиков в переменные
   float temp = getTemp_DS(); // Температура с DS18B20
-  // float humidity = getHumidity(); // Влажность с датчика DHT11
-  // float pressure = getPressure(); // Давление с BMP180
+  float humidity = getHumidity(); // Влажность с датчика DHT11
+  float pressure = getPressure(); // Давление с BMP180
   float light = getLight(); // Уровень освещенности с BH1750
   float earthHumidity = getEarthHumidity(); // Емкостной датчик влажности почвы
 
@@ -132,15 +132,14 @@ void loop()
     String data_to_send = api_key;
     data_to_send += "&field1="; // Поле для вывода 1, включается в Channel Settings
     data_to_send += temp;
-    // data_to_send += "&field2="; // Поле для вывода 2, включается в Channel Settings
-    // data_to_send += humidity;
-    // data_to_send += "&field3="; // Поле для вывода 3, включается в Channel Settings
-    // data_to_send += pressure;
+    data_to_send += "&field2="; // Поле для вывода 2, включается в Channel Settings
+    data_to_send += humidity;
+    data_to_send += "&field3="; // Поле для вывода 3, включается в Channel Settings
+    data_to_send += pressure;
     data_to_send += "&field4="; // Поле для вывода 4, включается в Channel Settings
     data_to_send += light;
     data_to_send += "&field5="; // Поле для вывода 5, включается в Channel Settings
     data_to_send += earthHumidity;
-    // data_to_send += "\r\n\r\n\r\n\r\n\r\n";
     data_to_send += "\r\n";
 
 
@@ -158,10 +157,10 @@ void loop()
     // Вывод данных в монитор порта, если не хотите пользоваться - можно удалить
     Serial.print("temp: ");
     Serial.println(temp);
-    // Serial.print("Humidity: ");
-    // Serial.println(humidity);
-    // Serial.print("pressure: ");
-    // Serial.println(pressure);
+    Serial.print("Humidity: ");
+    Serial.println(humidity);
+    Serial.print("pressure: ");
+    Serial.println(pressure);
     Serial.print("light: ");
     Serial.println(light);
     Serial.print("earthHumidity: ");
